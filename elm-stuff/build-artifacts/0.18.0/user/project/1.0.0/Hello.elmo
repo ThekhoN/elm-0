@@ -1,0 +1,18 @@
+var _user$project$Hello$multiply = F2(
+	function (a, b) {
+		return a * b;
+	});
+var _user$project$Hello$add = F2(
+	function (a, b) {
+		return a + b;
+	});
+var _user$project$Hello$addMultiply = function (a) {
+	return A2(
+		_user$project$Hello$multiply,
+		a,
+		A2(_user$project$Hello$add, a, a));
+};
+var _user$project$Hello$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(
+			_user$project$Hello$addMultiply(2))));

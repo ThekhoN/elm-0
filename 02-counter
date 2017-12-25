@@ -1,10 +1,10 @@
 module Main exposing (..)
 
-import Html exposing (Html, button, div, program, text)
+import Html exposing (Html, button, div, h2, program, text)
 import Html.Events exposing (onClick)
-import Random
 
 
+-- M M V U S M
 -- MODEL
 
 
@@ -14,16 +14,16 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( 1, Cmd.none )
+    ( 0, Cmd.none )
 
 
 
--- MESSAGES
+-- MESSAGE
 
 
 type Msg
-    = Roll
-    | OnResult Int
+    = Increment
+    | Decrement
 
 
 
@@ -33,21 +33,24 @@ type Msg
 view : Model -> Html Msg
 view model =
     div []
-        [ button [ onClick Roll ] [ text "Roll" ], text (toString model) ]
+        [ h2 [] [ text (toString model) ]
+        , div [] [ button [ onClick Increment ] [ text "+" ], button [ onClick Decrement ] [ text "-" ] ]
+        ]
 
 
 
+--  div [] [ text (toString model)  [ div [] [ button [ onClick Increment ] [ text "+" ] ,  button [ onClick Decrement ] [ text "-" ]  ]
 -- UPDATE
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Roll ->
-            ( model, Random.generate OnResult (Random.int 1 6) )
+        Increment ->
+            ( model + 1, Cmd.none )
 
-        OnResult res ->
-            ( res, Cmd.none )
+        Decrement ->
+            ( model - 1, Cmd.none )
 
 
 

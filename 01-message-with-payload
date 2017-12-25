@@ -1,6 +1,6 @@
-module Counter exposing (..)
+module Main exposing (..)
 
-import Html exposing (Html, button, div, h2, program, text)
+import Html exposing (Html, button, div, program, text)
 import Html.Events exposing (onClick)
 
 
@@ -22,8 +22,7 @@ init =
 
 
 type Msg
-    = Increment
-    | Decrement
+    = Increment Int
 
 
 
@@ -32,26 +31,19 @@ type Msg
 
 view : Model -> Html Msg
 view model =
-    -- div [] [ text (toString model) ]
     div []
-        [ h2 [] [ text (toString model) ]
-        , div [] [ button [ onClick Increment ] [ text "+" ], button [ onClick Decrement ] [ text "-" ] ]
-        ]
+        [ button [ onClick (Increment 2) ] [ text "+" ], text (toString model) ]
 
 
 
---  div [] [ text (toString model)  [ div [] [ button [ onClick Increment ] [ text "+" ] ,  button [ onClick Decrement ] [ text "-" ]  ]
 -- UPDATE
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment ->
-            ( model + 1, Cmd.none )
-
-        Decrement ->
-            ( model - 1, Cmd.none )
+        Increment howMuch ->
+            ( model + howMuch, Cmd.none )
 
 
 

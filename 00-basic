@@ -2,7 +2,7 @@ module App exposing (..)
 
 import Html exposing (Html, div, program, text)
 
-
+-- M M V U S M
 -- MODEL
 
 
